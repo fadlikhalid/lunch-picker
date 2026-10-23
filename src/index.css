@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: #f5ede6;
+  background-color: #120d0a;
+  background-image: radial-gradient(
+      60% 40% at 15% -5%,
+      rgba(255, 107, 44, 0.28),
+      transparent 70%
+    ),
+    radial-gradient(50% 35% at 100% 10%, rgba(255, 77, 109, 0.14), transparent 70%);
+  background-attachment: fixed;
+  font-family: ui-sans-serif, system-ui, -apple-system, "SF Pro Display",
+    "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}

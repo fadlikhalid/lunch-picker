@@ -1,0 +1,534 @@
+:root {
+  --bg: #120d0a;
+  --panel: #1a130f;
+  --panel-line: rgba(255, 214, 190, 0.1);
+  --text: #f5ede6;
+  --muted: #aa9d93;
+  --accent: #ff6b2c;
+  --accent-soft: rgba(255, 107, 44, 0.14);
+  --ink: #170e08;
+}
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px 64px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    filter 0.15s ease;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #ffb38a;
+  outline-offset: 3px;
+}
+
+/* Header */
+.app-header {
+  padding: 36px 0 28px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.app-header .dot {
+  color: var(--accent);
+}
+
+.app-header p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.sample-label {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+
+.hero,
+.list-area {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px 24px 24px;
+  border: 1px solid var(--panel-line);
+  border-radius: 28px;
+  background:
+    radial-gradient(80% 70% at 100% 0%, rgba(255, 107, 44, 0.55), transparent 65%),
+    radial-gradient(70% 60% at 0% 100%, rgba(255, 77, 109, 0.28), transparent 65%),
+    linear-gradient(180deg, #261611, var(--panel));
+}
+
+.eyebrow,
+.add-form label,
+.packs-label {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero-meal {
+  margin: 0;
+  min-height: 2.1em;
+  font-size: clamp(44px, 12vw, 76px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  overflow-wrap: anywhere;
+}
+
+.hero-meal.spinning {
+  color: rgba(245, 237, 230, 0.55);
+  animation: roll 0.12s ease-out;
+}
+
+.hero-meal.picked {
+  background: linear-gradient(180deg, #fff, #ffd2b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: land 0.5s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+.judge {
+  margin: -6px 0 0;
+  color: #d8cbc0;
+  animation: judge-in 0.4s ease-out 0.2s both;
+}
+
+.pick-button {
+  width: 100%;
+  min-height: 60px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--accent);
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 10px 30px rgba(255, 107, 44, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.pick-button:not(:disabled):hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.pick-button:not(:disabled):active {
+  transform: scale(0.985);
+}
+
+.pick-button.idle:not(:disabled) {
+  animation: glow 2.2s ease-in-out infinite;
+}
+
+.pick-button:disabled {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* List panel */
+.list-area {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 24px;
+  border: 1px solid var(--panel-line);
+  border-radius: 28px;
+  background: var(--panel);
+}
+
+.add-form label,
+.packs-label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.add-row {
+  display: flex;
+  gap: 8px;
+}
+
+.add-row input {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--panel-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font: inherit;
+}
+
+.add-row input::placeholder {
+  color: var(--muted);
+}
+
+.add-row input:focus {
+  border-color: var(--accent);
+}
+
+.add-button {
+  min-height: 48px;
+  padding: 0 22px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.add-button:hover {
+  background: var(--text);
+  color: var(--ink);
+}
+
+/* Packs */
+.packs-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pack-button {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--panel-line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.pack-button:not(:disabled):hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.pack-button:disabled {
+  color: var(--muted);
+  background: transparent;
+  cursor: not-allowed;
+}
+
+/* Meal rows */
+.meal-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.meal-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 58px;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--panel-line);
+  transition: background-color 0.25s ease;
+}
+
+.meal-row:last-child {
+  border-bottom-color: transparent;
+}
+
+.meal-row.is-picked {
+  background: var(--accent-soft);
+  border-radius: 14px;
+  border-bottom-color: transparent;
+}
+
+.meal-row.is-picked::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+.meal-mark {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--mark);
+}
+
+.meal-name {
+  flex: 1;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.picked-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.delete-button {
+  min-height: 44px;
+  padding: 0 8px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.delete-button:hover {
+  color: #ff8fa3;
+}
+
+.delete-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.empty-state {
+  margin: 0;
+  padding: 12px 0;
+  color: var(--muted);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Confetti burst when a pick lands */
+.confetti {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -16px;
+  width: 7px;
+  height: 13px;
+  border-radius: 2px;
+  opacity: 0;
+  animation-name: confetti-fall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+.confetti-piece.wide {
+  width: 12px;
+  height: 7px;
+}
+
+/* Motion */
+@keyframes roll {
+  from {
+    transform: translateY(-40%);
+    opacity: 0;
+    filter: blur(6px);
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes land {
+  0% {
+    transform: scale(0.88);
+    opacity: 0;
+    filter: blur(8px);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes judge-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow:
+      0 10px 30px rgba(255, 107, 44, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+  50% {
+    box-shadow:
+      0 10px 46px rgba(255, 107, 44, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--drift), 100vh) rotate(var(--spin));
+  }
+}
+
+@media (min-width: 901px) {
+  .layout {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 24px;
+  }
+
+  .hero {
+    position: sticky;
+    top: 24px;
+    min-height: 420px;
+    justify-content: space-between;
+    padding: 36px 36px 32px;
+  }
+
+  .hero-meal {
+    font-size: clamp(56px, 7vw, 92px);
+  }
+
+  .list-area {
+    padding: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .confetti {
+    display: none;
+  }
+}
+
+/* Not today */
+.skip-button {
+  min-height: 44px;
+  padding: 0 8px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.skip-button:hover {
+  color: var(--text);
+}
+
+.skip-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.meal-row.is-skipped .meal-name {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(170, 157, 147, 0.6);
+}
+
+.meal-row.is-skipped .meal-mark {
+  opacity: 0.35;
+}
+
+.skipped-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+/* Earlier picks */
+.earlier {
+  margin: -4px 0 0;
+  font-size: 15px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.earlier span {
+  margin-right: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
