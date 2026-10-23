@@ -112,6 +112,17 @@ Where this section and anything above differ, this section wins. The learner sai
 - Motion: the names roll in with a soft blur while shuffling, the winner fades in sharp, a confetti burst falls, all off for reduced motion.
 - Two standout areas only: the hero and the list panel.
 
+## Professional polish (added after the live deploy)
+
+Keeps the dark, fun look above and adds structure and finish:
+
+- Brand: a small orange rounded-square plate mark beside the `Lunch Picker` wordmark; the same mark is the favicon. Header row: brand on the left, tagline on the right, `SAMPLE DATA` as a small outlined tag.
+- Hero: a live teal dot beside `TODAY'S LUNCH`, and a line under the result: `N meals in the running`.
+- List panel: a `Menu` heading with a count (`6 meals · 2 skipped`), then the rows.
+- Footer: two quiet lines: `Your meals are saved on this device only.` and `Made for friends who can never decide.`
+- Page details: description, theme colour and share title in `index.html`.
+- The fun stays: the rolling shuffle, confetti, the Food Judge line and the glowing Pick button.
+
 ## Visual recipe
 
 The build follows this section card by card. The style above sets the colours, typeface and mood; this section fixes what the page shows and how its surfaces, rows and icons are built, and wins wherever the two differ. For a page that shows rows and a main figure:

@@ -1,4 +1,4 @@
-function PickCard({ pickedMeal, comment, earlier, shuffleName, disabled, allSkipped, onPick }) {
+function PickCard({ pickedMeal, comment, earlier, poolCount, shuffleName, disabled, allSkipped, onPick }) {
   const spinning = shuffleName !== null
   const text = spinning
     ? shuffleName
@@ -15,7 +15,10 @@ function PickCard({ pickedMeal, comment, earlier, shuffleName, disabled, allSkip
 
   return (
     <section className="hero" aria-label="Pick a meal">
-      <p className="eyebrow">Today's lunch</p>
+      <p className="eyebrow">
+        <span className="live-dot" aria-hidden="true" />
+        Today's lunch
+      </p>
       {/* key restarts the landing animation on every new pick */}
       <p
         key={spinning ? 'spin' : (pickedMeal?.id ?? 'none')}
@@ -27,6 +30,11 @@ function PickCard({ pickedMeal, comment, earlier, shuffleName, disabled, allSkip
       {!spinning && pickedMeal && comment && (
         <p className="judge" key={comment + pickedMeal.id}>
           {comment}
+        </p>
+      )}
+      {poolCount > 0 && (
+        <p className="pool">
+          {poolCount} {poolCount === 1 ? 'meal' : 'meals'} in the running
         </p>
       )}
       {earlier.length > 0 && (

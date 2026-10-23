@@ -27,6 +27,7 @@ function App() {
   const spinning = shuffleName !== null
   const pickedMeal = meals.find((meal) => meal.id === pickedId) ?? null
   const activeMeals = meals.filter((meal) => !meal.skipped)
+  const skippedCount = meals.length - activeMeals.length
   const hasUserMeals = meals.some((meal) => meal.addedByUser)
 
   function land(choice) {
@@ -110,16 +111,24 @@ function App() {
     <div className="page">
       {burst > 0 && <Confetti key={burst} />}
       <header className="app-header">
-        <h1>
-          Lunch Picker<span className="dot">.</span>
-        </h1>
-        <p>Tap Pick. Stop arguing about lunch.</p>
-        {!hasUserMeals && <small className="sample-label">Sample data</small>}
+        <div className="brand">
+          <svg className="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="16" fill="#FF6B2C" />
+            <circle cx="32" cy="32" r="16" fill="none" stroke="#170E08" strokeWidth="5" />
+            <circle cx="32" cy="32" r="5" fill="#170E08" />
+          </svg>
+          <h1>Lunch Picker</h1>
+        </div>
+        <p>
+          Tap Pick. Stop arguing about lunch.
+          {!hasUserMeals && <small className="sample-label">Sample data</small>}
+        </p>
       </header>
       <main className="layout">
         <PickCard
           pickedMeal={pickedMeal}
           comment={comment}
+          poolCount={activeMeals.length}
           earlier={history.slice(1)}
           shuffleName={shuffleName}
           disabled={activeMeals.length === 0}
@@ -129,6 +138,13 @@ function App() {
         <section className="list-area" aria-label="Meals">
           <AddMealForm onAdd={addMeal} />
           <PackButtons meals={meals} onAddPack={addPack} />
+          <div className="list-head">
+            <h2>Menu</h2>
+            <span>
+              {meals.length} {meals.length === 1 ? 'meal' : 'meals'}
+              {skippedCount > 0 && ` · ${skippedCount} skipped`}
+            </span>
+          </div>
           <MealList
             meals={meals}
             pickedId={pickedId}
@@ -138,6 +154,10 @@ function App() {
           />
         </section>
       </main>
+      <footer className="app-footer">
+        <span>Your meals are saved on this device only.</span>
+        <span>Made for friends who can never decide.</span>
+      </footer>
     </div>
   )
 }
